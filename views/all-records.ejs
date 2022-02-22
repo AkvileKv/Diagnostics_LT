@@ -1,0 +1,57 @@
+<%- include("partials/header2"); %>
+<%- include("partials/user-header"); %>
+
+<div class="container" id="begin">
+  <div class="jumbotron text-center">
+
+    <i class="fas fa-database fa-6x"></i>
+    <h1 class="display-3">All records</h1>
+    <p class="records-text">LEAF-MINING NEPTICULIDAE OF THE WORLD</p>
+
+    <!-- empty space-->
+    <section id="results-found" class="clear-section">
+      <div class="container-fluid">
+        <div class="empty-space3">
+          <%if (neptis.length === 1) { %>
+          <p class="found">Total: <%=neptis.length%> record</p>
+          <% } else if (neptis.length > 1) { %>
+          <p class="found">Total: <%=neptis.length%> records</p>
+          <% } else { %>
+          <p class="found">Sorry - no records</p>
+          <% } %>
+        </div>
+      </div>
+    </section>
+
+    <%  neptis.forEach(function(nepti){ %>
+
+      <p class="database-result"><span class="bold">Region:</span> <%=nepti.region%> </p>
+      <p class="database-result"><span class="bold">Species:</span> <%=nepti.species%></p>
+      <p class="database-result"><span class="bold">Hostplant family:</span> <%=nepti.hostplantfamily%> </p>
+      <p class="database-result"><span class="bold">Forewing:</span> <%=nepti.forewing%> </p>
+      <p class="database-result"><span class="bold">Tegumen:</span> <%=nepti.tegumen%> </p>
+      <p class="database-result"><span class="bold">Uncus:</span> <%=nepti.uncus%> </p>
+      <p class="database-result"><span class="bold">Gnathos:</span> <%=nepti.gnathos%></p>
+      <p class="database-result"><span class="bold">Valva:</span> <%=nepti.valva%></p>
+      <p class="database-result"><span class="bold">Juxta: </span><%=nepti.juxta%> </p>
+      <p class="database-result"><span class="bold">Transtilla:</span> <%=nepti.transtilla%> </p>
+      <p class="database-result"><span class="bold">Vinculum:</span> <%=nepti.vinculum%> </p>
+      <p class="database-result"><span class="bold">Phallus without Carinae:</span> <%=nepti.phalluswithoutcarinae%> </p>
+      <p class="database-result"><span class="bold">Phallus with Carinae:</span> <%=nepti.phalluswithcarinae%> </p>
+      <p class="database-result"><span class="bold">Image URL:</span> <%=nepti.filepath%> </p>
+      <img class="results-img" src="<%=nepti.filepath%>" alt="<%=nepti.species%>">
+
+
+      <% }) %>
+  </div>
+</div>
+
+<%if (neptis.length > 0) { %>
+<div class="circle-button">
+  <a class="btn circle" href="#begin" role="button">BACK TO BEGIN</a>
+</div>
+<% } %>
+
+
+
+<%- include("partials/footer"); %>
