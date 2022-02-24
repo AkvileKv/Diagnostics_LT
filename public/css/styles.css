@@ -13,6 +13,12 @@ p {
   color: #323232;
 }
 
+.blue-space h5 {
+  color: #F5D542;
+  margin-top: 20px;
+    font-weight: bold;
+}
+
 /* autocomplete */
 
 /*the container must be positioned relative:*/
@@ -72,7 +78,7 @@ input[type=submit] {
 
 /* Sections */
 .blue-section {
-  background-color: #7BA8AE;
+  background-color: #50641c;
 }
 
 .white-section {
@@ -92,7 +98,9 @@ input[type=submit] {
     font-size: 270%;
   }
   .blue-space a {
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    margin-top: 2px;
+    margin-bottom: 0.1rem
   }
   .btn {
     background: #F5D542;
@@ -100,8 +108,8 @@ input[type=submit] {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    color: #7BA8AE;
-    padding: 1px 35px 1px 35px;
+    color: #50641c;
+    padding: 0.2px 35px 0.2px 35px;
     text-decoration: none;
     font-size: 110%;
   }
@@ -182,7 +190,7 @@ input[type=submit] {
   height: 3.3rem;
   width: 3.3rem;
   border-radius: 50%;
-  background-color: #7BA8AE;
+  background-color: #50641c;
   color: #FFF;
   text-align: center;
   line-height: 1;
@@ -198,7 +206,7 @@ input[type=submit] {
   height: 6.5rem;
   width: 6.5rem;
   border-radius: 50%;
-  background-color: #7BA8AE;
+  background-color: #50641c;
   color: #FFF;
   text-align: center;
   line-height: 1;
@@ -227,9 +235,11 @@ input[type=submit] {
   h1 {
     font-weight: bold;
     font-size: 280%;
+    margin-bottom: 0;
   }
   .blue-space a {
-    margin-top: 25px;
+    margin-top: 5px;
+    margin-bottom: 0rem
   }
   .white-space {
     padding-top: 15px;
@@ -274,7 +284,7 @@ input[type=submit] {
     height: 4rem;
     width: 4rem;
     border-radius: 50%;
-    background-color: #7BA8AE;
+    background-color: #50641c;
     color: #FFF;
     text-align: center;
     line-height: 1;
@@ -308,8 +318,8 @@ input[type=submit] {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    color: #7BA8AE;
-    padding: 1px 45px 1px 45px;
+    color: #50641c;
+    padding: 0.2px 50px 0.2px 50px;
     text-decoration: none;
     font-size: 140%;
   }
@@ -353,7 +363,7 @@ input[type=submit] {
    height: 5rem;
    width: 5rem;
    border-radius: 50%;
-   background-color: #7BA8AE;
+   background-color: #50641c;
    color: #FFF;
    text-align: center;
    line-height: 1;
@@ -369,7 +379,7 @@ input[type=submit] {
    height: 7rem;
    width: 7rem;
    border-radius: 50%;
-   background-color: #7BA8AE;
+   background-color: #50641c;
    color: #FFF;
    text-align: center;
    line-height: 1;
@@ -464,9 +474,9 @@ input[type=submit] {
        height: 55px;
    } */
 
-.blue-space h4 {
-  font-weight: bold;
-  padding-top: 5px;
+.blue-space h3 {
+  padding-top: 0px;
+  font-size: 200%;
 }
 
 #title {
@@ -474,7 +484,7 @@ input[type=submit] {
 }
 
 #title .container-fluid {
-  padding: 3% 15% 3%;
+  padding: 2% 8% 2%;
 }
 
 .bold {
@@ -529,7 +539,7 @@ h5 {
   padding: 5rem 0.6rem;
 }
 
-h4 {
+h3, h4 {
   color: #FFF;
 }
 
@@ -539,15 +549,15 @@ h4 {
 }
 
 .green {
-  background-color: #92BC4B;
+  background-color: #92bc4b;
 }
 
 .blue {
   background-color: #008897;
 }
 
-.orange {
-  background-color: #FAB870;
+.dark-green {
+  background-color: #4f621e;
 }
 
 .mint {
@@ -564,7 +574,7 @@ footer {
 }
 
 hr {
-  border: 2px solid #7BA8AE;
+  border: 2px solid #50641c;
   margin-bottom: 0;
   opacity: 1;
 }
@@ -656,7 +666,7 @@ hr:not([size]) {
 
 /* search form */
 .character-name {
-  background-color: #7BA8AE;
+  background-color: #50641c;
 }
 
 label {
@@ -672,14 +682,14 @@ input:focus::-webkit-input-placeholder {
 }
 
 .form-select {
-  border-color: #7BA8AE;
+  border-color: #50641c;
   border-radius: 0;
   border-width: 4px;
   margin: 0;
 }
 
 .form-control-lg {
-  border-color: #7BA8AE;
+  border-color: #50641c;
   border-radius: 0;
   border-width: 4px;
   margin: 0;
@@ -761,7 +771,7 @@ input:focus::-webkit-input-placeholder {
 
 /* add button style */
 .plus-button {
-  border: 2px solid #7BA8AE;
+  border: 2px solid #50641c;
   background-color: #FFF;
   font-size: 100%;
   height: 2.5rem;
@@ -771,7 +781,7 @@ input:focus::-webkit-input-placeholder {
   float: right;
   font-weight: bold;
   text-align: center;
-  color: #7BA8AE;
+  color: #50641c;
 }
 
 .red-color {
@@ -785,5 +795,5 @@ input:focus::-webkit-input-placeholder {
   text-align: center;
   font-size: 2rem;
   color: #f6f5f5;
-  background-color: #7BA8AE;
+  background-color: #50641c;
 }

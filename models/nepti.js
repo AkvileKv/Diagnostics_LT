@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const neptiSchema = new Schema({
   classifier: String,
   species : String,
-  augaloSeima: String,
-  augaloGentis: String,
+  augaloSeima: [String],
+  augaloGentis: [String],
   pazeistaAugaloDalis: [String],
   minosMorfologUzpildymas: [String],
   minosVingSusiraizgymas: [String],
