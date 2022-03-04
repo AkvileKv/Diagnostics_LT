@@ -411,19 +411,18 @@ app.post("/create", (req, res) => {
   }
 
   const nepti = new Nepti({
-    region: req.body.region,
+    classifier: req.body.classifier,
     species: req.body.species,
-    hostplantfamily: req.body.hostplantfamily,
-    forewing: req.body.forewing,
-    tegumen: req.body.tegumen,
-    uncus: req.body.uncus,
-    gnathos: req.body.gnathos,
-    valva: req.body.valva,
-    juxta: req.body.juxta,
-    transtilla: req.body.transtilla,
-    vinculum: req.body.vinculum,
-    phalluswithoutcarinae: req.body.phalluswithoutcarinae,
-    phalluswithcarinae: req.body.phalluswithcarinae,
+    augaloSeima: req.body.augaloSeima,
+    augaloGentis: req.body.augaloGentis,
+    pazeistaAugaloDalis: req.body.pazeistaAugaloDalis,
+    minosMorfologUzpildymas: req.body.minosMorfologUzpildymas,
+    minosVingiuotumas: req.body.minosVingiuotumas,
+    minosTakoUzpildymas: req.body.minosTakoUzpildymas,
+    minosPradzia: req.body.minosPradzia,
+    ekskrementIssidestymas: req.body.ekskrementIssidestymas,
+    ekskrementSpalva: req.body.ekskrementSpalva,
+    viksroSpalva: req.body.viksroSpalva,
     filepath: filePath
   });
 
@@ -461,44 +460,41 @@ app.post("/update", (req, res) => {
     } else {
       if (foundNepti) {
         foundNepti.species = req.body.species,
-          foundNepti.region = req.body.region
+        foundNepti.classifier = req.body.classifier
 
         if (filePath != null) {
           foundNepti.filepath = filePath
         }
 
-        if (req.body.hostplantfamily != null) {
-          foundNepti.hostplantfamily = req.body.hostplantfamily
+        if (req.body.augaloSeima != null) {
+          foundNepti.augaloSeima = req.body.augaloSeima
         }
-        if (req.body.forewing != null) {
-          foundNepti.forewing = req.body.forewing
+        if (req.body.augaloGentis != null) {
+          foundNepti.augaloGentis = req.body.augaloGentis
         }
-        if (req.body.tegumen != null) {
-          foundNepti.tegumen = req.body.tegumen
+        if (req.body.pazeistaAugaloDalis != null) {
+          foundNepti.pazeistaAugaloDalis = req.body.pazeistaAugaloDalis
         }
-        if (req.body.uncus != null) {
-          foundNepti.uncus = req.body.uncus
+        if (req.body.minosMorfologUzpildymas != null) {
+          foundNepti.minosMorfologUzpildymas = req.body.minosMorfologUzpildymas
         }
-        if (req.body.gnathos != null) {
-          foundNepti.gnathos = req.body.gnathos
+        if (req.body.minosVingiuotumas != null) {
+          foundNepti.minosVingiuotumas = req.body.minosVingiuotumas
         }
-        if (req.body.valva != null) {
-          foundNepti.valva = req.body.valva
+        if (req.body.minosTakoUzpildymas != null) {
+          foundNepti.minosTakoUzpildymas = req.body.minosTakoUzpildymas
         }
-        if (req.body.juxta != null) {
-          foundNepti.juxta = req.body.juxta
+        if (req.body.minosPradzia != null) {
+          foundNepti.minosPradzia = req.body.minosPradzia
         }
-        if (req.body.transtilla != null) {
-          foundNepti.transtilla = req.body.transtilla
+        if (req.body.ekskrementIssidestymas != null) {
+          foundNepti.ekskrementIssidestymas = req.body.ekskrementIssidestymas
         }
-        if (req.body.vinculum != null) {
-          foundNepti.vinculum = req.body.vinculum
+        if (req.body.ekskrementSpalva != null) {
+          foundNepti.ekskrementSpalva = req.body.ekskrementSpalvaekskrementSpalva
         }
-        if (req.body.phalluswithoutcarinae != null) {
-          foundNepti.phalluswithoutcarinae = req.body.phalluswithoutcarinae
-        }
-        if (req.body.phalluswithcarinae != null) {
-          foundNepti.phalluswithcarinae = req.body.phalluswithcarinae
+        if (req.body.viksroSpalva != null) {
+          foundNepti.viksroSpalva = req.body.viksroSpalva
         }
 
         foundNepti.save(function(err) {
