@@ -117,9 +117,9 @@ app.get("/logout", function(req, res) {
 
 //-----------pagal URL / atvaizduoja search.ejs --------
 app.get("/search-all-species", (req, res) => {
-  let defaultRegion = "Central Asia";
+  let defaultClassifier = "All species";
   Nepti.find({
-    region: defaultRegion
+    classifier: defaultClassifier
   },
   function(err, neptis) {
     if (err) {
@@ -139,9 +139,9 @@ app.get("/search-all-species", (req, res) => {
 });
 app.get("/search-cultivated-plants", (req, res) => {
 
-  let defaultRegion = "Central America";
+  let defaultClassifier = "Cultivated plants";
   Nepti.find({
-    region: defaultRegion
+    classifier: defaultClassifier
   },
   function(err, neptis) {
     if (err) {
@@ -160,9 +160,9 @@ app.get("/search-cultivated-plants", (req, res) => {
   });
 });
 app.get("/search-forest-plants", (req, res) => {
-  let defaultRegion = "South America";
+  let defaultClassifier = "Forest plants";
   Nepti.find({
-    region: defaultRegion
+    classifier: defaultClassifier
   },
   function(err, neptis) {
     if (err) {
@@ -416,7 +416,7 @@ app.post("/create", (req, res) => {
     augaloSeima: req.body.augaloSeima,
     augaloGentis: req.body.augaloGentis,
     pazeistaAugaloDalis: req.body.pazeistaAugaloDalis,
-    minosMorfologUzpildymas: req.body.minosMorfologUzpildymas,
+    minosMorfologTipas: req.body.minosMorfologTipas,
     minosVingiuotumas: req.body.minosVingiuotumas,
     minosTakoUzpildymas: req.body.minosTakoUzpildymas,
     minosPradzia: req.body.minosPradzia,
@@ -475,8 +475,8 @@ app.post("/update", (req, res) => {
         if (req.body.pazeistaAugaloDalis != null) {
           foundNepti.pazeistaAugaloDalis = req.body.pazeistaAugaloDalis
         }
-        if (req.body.minosMorfologUzpildymas != null) {
-          foundNepti.minosMorfologUzpildymas = req.body.minosMorfologUzpildymas
+        if (req.body.minosMorfologTipas != null) {
+          foundNepti.minosMorfologTipas = req.body.minosMorfologTipas
         }
         if (req.body.minosVingiuotumas != null) {
           foundNepti.minosVingiuotumas = req.body.minosVingiuotumas

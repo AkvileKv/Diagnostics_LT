@@ -8,7 +8,7 @@ const neptiSchema = new Schema({
   augaloSeima: [String],
   augaloGentis: [String],
   pazeistaAugaloDalis: [String],
-  minosMorfologUzpildymas: [String],
+  minosMorfologTipas: [String],
   minosVingiuotumas: [String],
   minosTakoUzpildymas: [String],
   minosPradzia: [String],

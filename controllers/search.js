@@ -6,110 +6,99 @@ const Nepti = require('../models/nepti');
 //-----------PAIESKA---------
 router.get("/", function(req, res) {
 
-  let linkRegion;
-  let typedSpecies = _.toLower(req.query.dspecies);
-  let defaultRegion = req.query.dregion;
-  let selectedHostPlantFamily = req.query.dhostplantfamily;
-  let selectedForewing = req.query.dforewing;
-  let selectedTegumen = req.query.dtegumen;
-  let selectedUncus = req.query.duncus;
-  let selectedGnathos = req.query.dgnathos;
-  let selectedValva = req.query.dvalva;
-  let selectedJuxta = req.query.djuxta;
-  let selectedTranstilla = req.query.dtranstilla;
-  let selectedVinculum = req.query.dvinculum;
-  let selectedPhallusWithoutCarinae = req.query.dphalluswithoutcarinae;
-  let selectedPhallusWithCarinae = req.query.dphalluswithcarinae;
+  let linkClassifier;
+  let defaultClassifier = req.query.classifier;
+  let selectedAugaloSeima = req.query.augaloSeima;
+  let selectedAugaloGentis = req.query.augaloGentis;
+  let selectedPazeistaAugaloDalis = req.query.pazeistaAugaloDalis;
+  let selectedMinosMorfologTipas = req.query.minosMorfologTipas;
+  let selectedMinosVingiuotumas = req.query.minosVingiuotumas;
+  let selectedMinosTakoUzpildymas = req.query.minosTakoUzpildymas;
+  let selectedMinosPradzia = req.query.minosPradzia;
+  let selectedEkskrementIssidestymas = req.query.ekskrementIssidestymas;
+  let selectedEkskrementSpalva = req.query.ekskrementSpalva;
+  let selectedViksroSpalva = req.query.viksroSpalva;
+  let typedSpecies = _.toLower(req.query.species);
 
-  if (defaultRegion === "Central America") {
-    linkRegion = "central-america"
-  } else if (defaultRegion === "Central Asia") {
-    linkRegion = "central-asia"
-  } else if (defaultRegion === "South America") {
-    linkRegion = "south-america"
-  } else if (defaultRegion === "Continental East Asia") {
-    linkRegion = "continental-east-asia"
-  } else if (defaultRegion === "The Himalaya") {
-    linkRegion = "the-himalaya"
+  if (defaultClassifier === "Cultivated plants") {
+    linkClassifier = "cultivated-plants"
+  } else if (defaultClassifier === "Forest plants") {
+    linkClassifier = "forest-plants"
+  } else if (defaultClassifier === "All species") {
+    linkClassifier = "all-species"
   } else {
     console.log("nerasta");
   }
-
-  if (req.query.dspecies == "") {
+// paieska "all species" sutvarkyti
+  if (req.query.species == "") {
     typedSpecies = {
       $ne: null
     };
   }
-  if (req.query.dhostplantfamily == "null") {
-    selectedHostPlantFamily = {
+  if (req.query.augaloSeima == "null") {
+    selectedAugaloSeima = {
       $ne: null
     };
   }
-  if (req.query.dforewing == "null") {
-    selectedForewing = {
+  if (req.query.augaloGentis == "null") {
+    selectedAugaloGentis = {
       $ne: null
     };
   }
-  if (req.query.dtegumen == "null") {
-    selectedTegumen = {
+  if (req.query.pazeistaAugaloDalis == "null") {
+    selectedPazeistaAugaloDalis = {
       $ne: null
     };
   }
-  if (req.query.duncus == "null") {
-    selectedUncus = {
+  if (req.query.minosMorfologTipas == "null") {
+    selectedMinosMorfologTipas = {
       $ne: null
     };
   }
-  if (req.query.dgnathos == "null") {
-    selectedGnathos = {
+  if (req.query.minosVingiuotumas == "null") {
+    selectedMinosVingiuotumas = {
       $ne: null
     };
   }
-  if (req.query.dvalva == "null") {
-    selectedValva = {
+  if (req.query.minosTakoUzpildymas == "null") {
+    selectedMinosTakoUzpildymas = {
       $ne: null
     };
   }
-  if (req.query.djuxta == "null") {
-    selectedJuxta = {
+  if (req.query.minosPradzia == "null") {
+    selectedMinosPradzia = {
       $ne: null
     };
   }
-  if (req.query.dtranstilla == "null") {
-    selectedTranstilla = {
+  if (req.query.ekskrementIssidestymas == "null") {
+    selectedEkskrementIssidestymas = {
       $ne: null
     };
   }
-  if (req.query.dvinculum == "null") {
-    selectedVinculum = {
+  if (req.query.ekskrementSpalva == "null") {
+    selectedEkskrementSpalva = {
       $ne: null
     };
   }
-  if (req.query.dphalluswithoutcarinae == "null") {
-    selectedPhallusWithoutCarinae = {
-      $ne: null
-    };
-  }
-  if (req.query.dphalluswithcarinae == "null") {
-    selectedPhallusWithCarinae = {
+  if (req.query.viksroSpalva == "null") {
+    selectedViksroSpalva = {
       $ne: null
     };
   }
 
   Nepti.find({
-    region: defaultRegion,
+    classifier: defaultClassifier,
     species: typedSpecies,
-    hostplantfamily: selectedHostPlantFamily,
-    forewing: selectedForewing,
-    tegumen: selectedTegumen,
-    uncus: selectedUncus,
-    gnathos: selectedGnathos,
-    valva: selectedValva,
-    juxta: selectedJuxta,
-    transtilla: selectedTranstilla,
-    vinculum: selectedVinculum,
-    phalluswithoutcarinae: selectedPhallusWithoutCarinae,
-    phalluswithcarinae: selectedPhallusWithCarinae
+    augaloSeima: selectedAugaloSeima,
+    augaloGentis: selectedAugaloGentis,
+    pazeistaAugaloDalis: selectedPazeistaAugaloDalis,
+    minosMorfologTipas: selectedMinosMorfologTipas,
+    minosVingiuotumas: selectedMinosVingiuotumas,
+    minosTakoUzpildymas: selectedMinosTakoUzpildymas,
+    minosPradzia: selectedMinosPradzia,
+    ekskrementIssidestymas: selectedEkskrementIssidestymas,
+    ekskrementSpalva: selectedEkskrementSpalva,
+    viksroSpalva: selectedViksroSpalva
   },
   function(err, neptis) {
     if (err) {
@@ -123,10 +112,11 @@ router.get("/", function(req, res) {
       //   selectedTranstilla + " and selectedVinculum: " + selectedVinculum +
       //   " and selectedPhallusWithoutCarinae: " + selectedPhallusWithoutCarinae +
       //   " and selectedPhallusWithCarinae: " + selectedPhallusWithCarinae);
+      console.log(linkClassifier);
       res.render("results", {
         neptis: neptis,
-        region: _.toUpper(defaultRegion),
-        regionLink: linkRegion
+        classifier: _.toUpper(defaultClassifier),
+        classifierLink: linkClassifier
       });
     }
   });
