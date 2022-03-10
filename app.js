@@ -117,10 +117,8 @@ app.get("/logout", function(req, res) {
 
 //-----------pagal URL / atvaizduoja search.ejs --------
 app.get("/search-all-species", (req, res) => {
-  let defaultClassifier = "All species";
-  Nepti.find({
-    classifier: defaultClassifier
-  },
+
+  Nepti.find({},
   function(err, neptis) {
     if (err) {
       console.log(err);
@@ -129,7 +127,7 @@ app.get("/search-all-species", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-      console.log(allSpecies[i]);
+      //console.log(allSpecies[i]);
       }
       res.render("s-all-species", {
         dataArray: JSON.stringify(allSpecies)
@@ -151,7 +149,7 @@ app.get("/search-cultivated-plants", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-       console.log(allSpecies[i]);
+       //console.log(allSpecies[i]);
       }
       res.render("s-cultivated-plants", {
         dataArray: JSON.stringify(allSpecies)
@@ -172,7 +170,7 @@ app.get("/search-forest-plants", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-       console.log(allSpecies[i]);
+      // console.log(allSpecies[i]);
       }
       res.render("s-forest-plants", {
         dataArray: JSON.stringify(allSpecies)
@@ -465,7 +463,6 @@ app.post("/update", (req, res) => {
         if (filePath != null) {
           foundNepti.filepath = filePath
         }
-
         if (req.body.augaloSeima != null) {
           foundNepti.augaloSeima = req.body.augaloSeima
         }
@@ -491,7 +488,7 @@ app.post("/update", (req, res) => {
           foundNepti.ekskrementIssidestymas = req.body.ekskrementIssidestymas
         }
         if (req.body.ekskrementSpalva != null) {
-          foundNepti.ekskrementSpalva = req.body.ekskrementSpalvaekskrementSpalva
+          foundNepti.ekskrementSpalva = req.body.ekskrementSpalva
         }
         if (req.body.viksroSpalva != null) {
           foundNepti.viksroSpalva = req.body.viksroSpalva

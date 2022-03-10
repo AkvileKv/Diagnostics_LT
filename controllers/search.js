@@ -86,6 +86,33 @@ router.get("/", function(req, res) {
     };
   }
 
+if (defaultClassifier === "All species"){
+  Nepti.find({
+    species: typedSpecies,
+    augaloSeima: selectedAugaloSeima,
+    augaloGentis: selectedAugaloGentis,
+    pazeistaAugaloDalis: selectedPazeistaAugaloDalis,
+    minosMorfologTipas: selectedMinosMorfologTipas,
+    minosVingiuotumas: selectedMinosVingiuotumas,
+    minosTakoUzpildymas: selectedMinosTakoUzpildymas,
+    minosPradzia: selectedMinosPradzia,
+    ekskrementIssidestymas: selectedEkskrementIssidestymas,
+    ekskrementSpalva: selectedEkskrementSpalva,
+    viksroSpalva: selectedViksroSpalva
+  },
+  function(err, neptis) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render("results", {
+        neptis: neptis,
+        classifier: _.toUpper(defaultClassifier),
+        classifierLink: linkClassifier
+      });
+    }
+  });
+
+} else {
   Nepti.find({
     classifier: defaultClassifier,
     species: typedSpecies,
@@ -104,15 +131,6 @@ router.get("/", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      // console.log("Paieskos parametrai - " + " typedSpecies: " + typedSpecies + " defaultRegion: " + defaultRegion +
-      //   " and selectedHostPlantFamily: " + selectedHostPlantFamily + " and selectedForewing: " +
-      //   selectedForewing + " and selectedTegumen: " + selectedTegumen + " and selectedUncus: " +
-      //   selectedUncus + " and selectedGnathos: " + selectedGnathos + " and selectedValva: " +
-      //   selectedValva + " and selectedJuxta: " + selectedJuxta + " and selectedTranstilla: " +
-      //   selectedTranstilla + " and selectedVinculum: " + selectedVinculum +
-      //   " and selectedPhallusWithoutCarinae: " + selectedPhallusWithoutCarinae +
-      //   " and selectedPhallusWithCarinae: " + selectedPhallusWithCarinae);
-      console.log(linkClassifier);
       res.render("results", {
         neptis: neptis,
         classifier: _.toUpper(defaultClassifier),
@@ -120,6 +138,7 @@ router.get("/", function(req, res) {
       });
     }
   });
+}
 
 });
 
