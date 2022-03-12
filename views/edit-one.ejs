@@ -8,7 +8,7 @@
 
       <div class="form-group">
         <i class="fas fa-pen-square fa-6x"></i>
-        <h1 class="display-3">Edit record</h1>
+        <h1 class="display-3">Redaguoti įrašą</h1>
         <p class="records-text"><%=nepti.species%></p>
 
           <input type="text" class="form-control  database-result" name="id" value="<%=nepti._id%>" readonly="readonly" hidden="hidden">
@@ -27,9 +27,10 @@
           </div>
           <div class="col-lg-8 col-md-6 col-sm-12">
             <select name="classifier" class="select-gray3 form-select form-control-lg">
-            <option style="color:gray" value="null">select a classifier</option>
-              <option class="others" <%if (nepti.classifier === "Cultivated plants") { %> selected <% } %> value="Cultivated plants">Cultivated plants</option>
-              <option class="others" <%if (nepti.classifier === "Forest plants") { %> selected <% } %> value="Forest plants">Forest plants</option>
+            <option style="color:gray" value="null">pasirinkti klasifikatorių</option>
+                <option class="others" <%if (nepti.classifier === "All species") { %> selected <% } %> value="All species">Visos rūšys</option>
+              <option class="others" <%if (nepti.classifier === "Cultivated plants") { %> selected <% } %> value="Cultivated plants">Kultivuoti augalai</option>
+              <option class="others" <%if (nepti.classifier === "Forest plants") { %> selected <% } %> value="Forest plants">Miško augalai</option>
             </select>
           </div>
         </div>
@@ -46,7 +47,7 @@
           </div>
         </div>
 
-<p class="red-color">Hold down the Ctrl (windows) or Command (Mac) button to select multiple options below</p>
+<p class="red-color">Laikykite nuspaudus Ctrl (windows) arba Command (Mac) mygtuką norėdami pasirinkti keletą požymių žemiau</p>
         <p class="database-result"><span class="bold">Augalo šeima:</span>
             <textarea type="text" rows="1" class="form-control database-result" name="" readonly="readonly"><%=nepti.augaloSeima%></textarea>
         </p>
