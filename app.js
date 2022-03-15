@@ -22,7 +22,6 @@ const searchRouter = require('./controllers/search');
 const loginRouter = require('./controllers/login');
 const registerRouter = require('./controllers/register');
 const notFund404Router = require('./controllers/404');
-const notFund404_userRouter = require('./controllers/404-user');
 const notFund404_adminRouter = require('./controllers/404-admin');
 
 const app = express();
@@ -40,11 +39,10 @@ app.use("/contact-us", contactRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/404", notFund404Router);
-app.use("/404-user", notFund404_userRouter);
 app.use("/404-admin", notFund404_adminRouter);
 app.use("/s-all-species", searchRouter);
 app.use("/s-cultivated-plants", searchRouter);
-app.use("/s-forest-plants", searchRouter);
+// app.use("/s-forest-plants", searchRouter);
 
 app.use(fileUpload());
 
@@ -80,35 +78,35 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.post("/register", (req, res) => {
-
-  User.findOne({
-    username: req.body.username
-  }, function(err, user) {
-    if (err) {
-      console.log(err);
-    }
-    if (user) {
-      console.log("User exists");
-      res.redirect("/register");
-    } else {
-      User.register({
-        username: req.body.username,
-        role: "user"
-      }, req.body.password, function(err, user) {
-        if (err) {
-          console.log(err);
-          res.redirect("/register");
-        } else {
-          passport.authenticate("local")(req, res, function() {
-            res.redirect("/all-records");
-          });
-        }
-      });
-    }
-  });
-
-});
+// app.post("/register", (req, res) => {
+//
+//   User.findOne({
+//     username: req.body.username
+//   }, function(err, user) {
+//     if (err) {
+//       console.log(err);
+//     }
+//     if (user) {
+//       console.log("User exists");
+//       res.redirect("/register");
+//     } else {
+//       User.register({
+//         username: req.body.username,
+//         role: "user"
+//       }, req.body.password, function(err, user) {
+//         if (err) {
+//           console.log(err);
+//           res.redirect("/register");
+//         } else {
+//           passport.authenticate("local")(req, res, function() {
+//             res.redirect("/all-records");
+//           });
+//         }
+//       });
+//     }
+//   });
+//
+// });
 
 app.get("/logout", function(req, res) {
   req.logout();
@@ -137,7 +135,7 @@ app.get("/search-all-species", (req, res) => {
 });
 app.get("/search-cultivated-plants", (req, res) => {
 
-  let defaultClassifier = "Cultivated plants";
+  let defaultClassifier = "Kultūriniai augalai";
   Nepti.find({
     classifier: defaultClassifier
   },
@@ -157,27 +155,27 @@ app.get("/search-cultivated-plants", (req, res) => {
     }
   });
 });
-app.get("/search-forest-plants", (req, res) => {
-  let defaultClassifier = "Forest plants";
-  Nepti.find({
-    classifier: defaultClassifier
-  },
-  function(err, neptis) {
-    if (err) {
-      console.log(err);
-    } else {
-      var allSpecies=[];
-      for(i=0; i<neptis.length; i++)
-      {
-      allSpecies.push(neptis[i].species);
-      // console.log(allSpecies[i]);
-      }
-      res.render("s-forest-plants", {
-        dataArray: JSON.stringify(allSpecies)
-      });
-    }
-  });
-});
+// app.get("/search-forest-plants", (req, res) => {
+//   let defaultClassifier = "Forest plants";
+//   Nepti.find({
+//     classifier: defaultClassifier
+//   },
+//   function(err, neptis) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       var allSpecies=[];
+//       for(i=0; i<neptis.length; i++)
+//       {
+//       allSpecies.push(neptis[i].species);
+//       // console.log(allSpecies[i]);
+//       }
+//       res.render("s-forest-plants", {
+//         dataArray: JSON.stringify(allSpecies)
+//       });
+//     }
+//   });
+// });
 
 //------------Randu ir isvedu visus irasus esancius DB--------
 app.get("/database", (req, res) => {
@@ -202,37 +200,6 @@ app.get("/database", (req, res) => {
         } else {
           console.log("User role unknown");
           res.redirect("/404-user");
-        }
-      }
-    });
-  } else {
-    res.redirect("/login");
-  }
-});
-
-app.get("/all-records", (req, res) => {
-
-  if (req.isAuthenticated()) {
-
-    User.findById(req.user.id, function(err, foundUser) {
-      if (err) {
-        console.log("Error...");
-        console.log(err);
-      } else {
-        if (foundUser.role === "user") {
-          Nepti.find({}, function(err, neptis) {
-            if (err) {
-              console.log(err);
-            } else {
-              console.log("Turi isvesti rezultatus");
-              res.render("all-records", {
-                neptis: neptis
-              });
-            }
-          });
-        } else {
-          console.log("User role unknown");
-          res.redirect("/404-admin");
         }
       }
     });
@@ -369,9 +336,9 @@ app.post("/login", (req, res) => {
           } else {
             if (foundUser.role === "admin") {
               res.redirect("/database");
-            } else if (foundUser.role === "user") {
-              console.log("User role: user");
-              res.redirect("/all-records");
+            } else {
+              console.log("User role unknown");
+              res.redirect("/");
             }
           }
         });

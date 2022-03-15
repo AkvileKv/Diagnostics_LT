@@ -766,7 +766,7 @@ input:focus::-webkit-input-placeholder {
 }
 
 .edit-left {
-  float: left;
+  /* float: right; */
 }
 
 /* add button style */
