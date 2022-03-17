@@ -20,11 +20,9 @@ router.get("/", function(req, res) {
   let selectedViksroSpalva = req.query.viksroSpalva;
   let typedSpecies = _.toLower(req.query.species);
 
-  if (defaultClassifier === "Cultivated plants") {
+  if (defaultClassifier === "Kultūriniai augalai") {
     linkClassifier = "cultivated-plants"
-  } else if (defaultClassifier === "Forest plants") {
-    linkClassifier = "forest-plants"
-  } else if (defaultClassifier === "All species") {
+  } else if (defaultClassifier === "Visos rūšys") {
     linkClassifier = "all-species"
   } else {
     console.log("nerasta");
@@ -86,7 +84,7 @@ router.get("/", function(req, res) {
     };
   }
 
-if (defaultClassifier === "All species"){
+if (defaultClassifier === "Visos rūšys"){
   Nepti.find({
     species: typedSpecies,
     augaloSeima: selectedAugaloSeima,
