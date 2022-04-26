@@ -21,12 +21,22 @@ const citeRouter = require('./controllers/cite-us');
 const contactRouter = require('./controllers/contact-us');
 const searchRouter = require('./controllers/search');
 const loginRouter = require('./controllers/login');
-const registerRouter = require('./controllers/register');
 const notFund404Router = require('./controllers/404');
 const notFund404_adminRouter = require('./controllers/404-admin');
 
 const app = express();
 app.use(helmet());
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", 'code.jquery.com', 'ajax.googleapis.com', 'maxcdn.bootstrapcdn.com',
+       "cdn.jsdelivr.net", "kit.fontawesome.com"],
+      connectSrc: ["'self'", "https://ka-f.fontawesome.com", "https://use.fontawesome.com"],
+    },
+  })
+);
 
 app.set('view engine', 'ejs');
 
@@ -39,7 +49,6 @@ app.use("/", homeRouter);
 app.use("/cite-us", citeRouter);
 app.use("/contact-us", contactRouter);
 app.use("/login", loginRouter);
-app.use("/register", registerRouter);
 app.use("/404", notFund404Router);
 app.use("/404-admin", notFund404_adminRouter);
 app.use("/s-all-species", searchRouter);
@@ -110,6 +119,10 @@ passport.deserializeUser(User.deserializeUser());
 //
 // });
 
+// app.get("/register", (req, res) => {
+//   res.render("register");
+// });
+
 app.get("/logout", function(req, res) {
   req.logout();
   res.redirect('/');
@@ -127,10 +140,10 @@ app.get("/search-all-species", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-      //console.log(allSpecies[i]);
+      console.log(allSpecies[i]);
       }
       res.render("s-all-species", {
-        dataArray: JSON.stringify(allSpecies)
+        dataArray: allSpecies
       });
     }
   });
@@ -149,35 +162,14 @@ app.get("/search-cultivated-plants", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-       //console.log(allSpecies[i]);
+       console.log(allSpecies[i]);
       }
       res.render("s-cultivated-plants", {
-        dataArray: JSON.stringify(allSpecies)
+        dataArray: allSpecies
       });
     }
   });
 });
-// app.get("/search-forest-plants", (req, res) => {
-//   let defaultClassifier = "Forest plants";
-//   Nepti.find({
-//     classifier: defaultClassifier
-//   },
-//   function(err, neptis) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       var allSpecies=[];
-//       for(i=0; i<neptis.length; i++)
-//       {
-//       allSpecies.push(neptis[i].species);
-//       // console.log(allSpecies[i]);
-//       }
-//       res.render("s-forest-plants", {
-//         dataArray: JSON.stringify(allSpecies)
-//       });
-//     }
-//   });
-// });
 
 //------------Randu ir isvedu visus irasus esancius DB--------
 app.get("/database", (req, res) => {

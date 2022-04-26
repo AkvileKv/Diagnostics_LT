@@ -162,43 +162,11 @@
 <!-- empty space-->
 <section class="clear-section">
   <div class="container-fluid">
-
     <div class="empty-space2">
       <p class="intro"> </p>
     </div>
-
   </div>
 </section>
-
-<script type="text/javascript">
-  $('#readMore').click(function(e) {
-    e.stopPropagation();
-    $('.justify').css({
-        'height': 'auto',
-    })
-});
-
-$(document).click(function() {
-    $('.justify').css({
-        'height': '120px'
-    })
-})
-
-$('#readMore').click(function(e) {
-  e.stopPropagation();
-  $('#readMore').css({
-      'display': 'none',
-  })
-});
-
-$(document).click(function() {
-  $('#readMore').css({
-      'display': 'block'
-  })
-})
-
-
-</script>
 
 
 <%- include('partials/footer') %>

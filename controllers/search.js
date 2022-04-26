@@ -7,6 +7,7 @@ const Nepti = require('../models/nepti');
 router.get("/", function(req, res) {
 
   let linkClassifier;
+  let typedSpecies = _.toLower(req.query.species);
   let defaultClassifier = req.query.classifier;
   let selectedAugaloSeima = req.query.augaloSeima;
   let selectedAugaloGentis = req.query.augaloGentis;
@@ -18,7 +19,7 @@ router.get("/", function(req, res) {
   let selectedEkskrementIssidestymas = req.query.ekskrementIssidestymas;
   let selectedEkskrementSpalva = req.query.ekskrementSpalva;
   let selectedViksroSpalva = req.query.viksroSpalva;
-  let typedSpecies = _.toLower(req.query.species);
+
 
   if (defaultClassifier === "Kultūriniai augalai") {
     linkClassifier = "cultivated-plants"
@@ -86,6 +87,8 @@ router.get("/", function(req, res) {
 
 if (defaultClassifier === "Visos rūšys"){
   Nepti.find({
+    //paieska pritaikyta tik 1 zodziui
+    //species laukas DB turi buti perrasytas
     species: typedSpecies,
     augaloSeima: selectedAugaloSeima,
     augaloGentis: selectedAugaloGentis,
@@ -102,6 +105,8 @@ if (defaultClassifier === "Visos rūšys"){
     if (err) {
       console.log(err);
     } else {
+      console.log("visos rusys");
+      console.log(typedSpecies);
       res.render("results", {
         neptis: neptis,
         classifier: _.toUpper(defaultClassifier),
@@ -113,6 +118,8 @@ if (defaultClassifier === "Visos rūšys"){
 } else {
   Nepti.find({
     classifier: defaultClassifier,
+      //paieska pritaikyta tik 1 zodziui
+      //species laukas DB turi buti perrasytas
     species: typedSpecies,
     augaloSeima: selectedAugaloSeima,
     augaloGentis: selectedAugaloGentis,
@@ -129,10 +136,12 @@ if (defaultClassifier === "Visos rūšys"){
     if (err) {
       console.log(err);
     } else {
+            console.log("kulturines rusys");
+              console.log(typedSpecies);
       res.render("results", {
         neptis: neptis,
-        classifier: _.toUpper(defaultClassifier),
-        classifierLink: linkClassifier
+        classifier: _.toUpper(defaultClassifier), //uzrasui
+        classifierLink: linkClassifier //sugrizti atgal
       });
     }
   });
