@@ -140,7 +140,7 @@ app.get("/search-all-species", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-      console.log(allSpecies[i]);
+      //console.log(allSpecies[i]);
       }
       res.render("s-all-species", {
         dataArray: allSpecies
@@ -162,7 +162,7 @@ app.get("/search-cultivated-plants", (req, res) => {
       for(i=0; i<neptis.length; i++)
       {
       allSpecies.push(neptis[i].species);
-       console.log(allSpecies[i]);
+       //console.log(allSpecies[i]);
       }
       res.render("s-cultivated-plants", {
         dataArray: allSpecies
